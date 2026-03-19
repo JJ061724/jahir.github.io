@@ -53,15 +53,15 @@ body { margin:0; overflow:hidden; font-family:'Segoe UI'; }
 
 @keyframes fall { to { top:60%; } }
 
+/* 🌻 ocultas al inicio */
 .sunflower {
   position:absolute;
   bottom:40%;
   transform:translateX(-50%);
-  opacity:0;
-  animation:growUp 2s forwards;
-  animation-delay: 3s;
+  display:none;
 }
 
+/* crecimiento */
 @keyframes growUp {
   from { transform:translate(-50%,50%) scale(0); opacity:0; }
   to { transform:translate(-50%,0) scale(1); opacity:1; }
@@ -100,15 +100,6 @@ body { margin:0; overflow:hidden; font-family:'Segoe UI'; }
   position:absolute;
   top:17px;
   left:17px;
-}
-
-.sunflower {
-  animation:growUp 2s forwards, sway 3s infinite alternate ease-in-out;
-}
-
-@keyframes sway {
-  from { transform:translate(-50%,0) rotate(-2deg); }
-  to { transform:translate(-50%,0) rotate(2deg); }
 }
 
 .message {
@@ -164,7 +155,7 @@ button {
 <div class="sunflower"></div>
 
 <div class="message">
-  <h2>Para la mejor novia del mundo ❤️</h2>
+  <h2>Te doy esta flor amarilla digital para la mejor novia del mundo ❤️</h2>
   <p>Te amo mucho</p>
 </div>
 
@@ -189,7 +180,15 @@ flowers.forEach((f,i) => {
   `;
 });
 
-// ✨ formar letra M
+/* 🌱 esperar semilla */
+setTimeout(() => {
+  flowers.forEach(f => {
+    f.style.display = "block";
+    f.style.animation = "growUp 2s forwards";
+  });
+}, 2000);
+
+/* ✨ formar M */
 setTimeout(() => {
   const positions = [
     {left:"35%", bottom:"80%"},
@@ -207,7 +206,7 @@ setTimeout(() => {
     f.style.bottom = positions[i].bottom;
   });
 
-},7000);
+}, 7000);
 
 function playMusic(){
   document.getElementById('music').play();
