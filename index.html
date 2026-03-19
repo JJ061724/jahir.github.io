@@ -9,7 +9,6 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to top, #87ceeb 0%, #b3e5fc 100%);
 }
 
 .sky {
@@ -111,15 +110,6 @@ body {
   to { transform: translate(-50%,0) rotate(2deg); }
 }
 
-/* ❤️ Animación corazón */
-.heart {
-  animation: moveToHeart 2s forwards;
-}
-
-@keyframes moveToHeart {
-  to { transform: translate(var(--x), var(--y)) scale(1.2); }
-}
-
 .message {
   position: absolute;
   bottom: 10%;
@@ -163,12 +153,17 @@ button {
 <div id="garden"></div>
 <div class="seed"></div>
 
-<!-- 🌻 Girasoles -->
+<!-- Girasoles -->
 <div class="sunflower" id="f1" style="left:30%; animation-delay:2s;"></div>
 <div class="sunflower" id="f2" style="left:40%; animation-delay:2.5s;"></div>
 <div class="sunflower" id="f3" style="left:50%; animation-delay:3s;"></div>
 <div class="sunflower" id="f4" style="left:60%; animation-delay:3.5s;"></div>
 <div class="sunflower" id="f5" style="left:70%; animation-delay:4s;"></div>
+
+<div class="message">
+  <h2>Para la mejor novia del mundo ❤️</h2>
+  <p>Te amo mucho</p>
+</div>
 
 <script>
 const flowers = document.querySelectorAll('.sunflower');
@@ -190,32 +185,28 @@ flowers.forEach(f => {
   `;
 });
 
-// ❤️ mover a forma de corazón
+// ❤️ formar corazón
 setTimeout(() => {
   const positions = [
-    {x:"-120px", y:"-120px"},
-    {x:"-60px", y:"-180px"},
-    {x:"0px", y:"-200px"},
-    {x:"60px", y:"-180px"},
-    {x:"120px", y:"-120px"}
+    {left:"45%", bottom:"65%"},
+    {left:"40%", bottom:"75%"},
+    {left:"50%", bottom:"80%"},
+    {left:"60%", bottom:"75%"},
+    {left:"55%", bottom:"65%"}
   ];
 
   flowers.forEach((f, i) => {
-    f.style.setProperty('--x', positions[i].x);
-    f.style.setProperty('--y', positions[i].y);
-    f.classList.add('heart');
+    f.style.transition = "all 2s ease";
+    f.style.left = positions[i].left;
+    f.style.bottom = positions[i].bottom;
   });
+
 }, 7000);
 
 function playMusic(){
   document.getElementById('music').play();
 }
 </script>
-
-<div class="message">
-  <h2>Para la mejor novia del mundo ❤️</h2>
-  <p>Te amo mucho</p>
-</div>
 
 </body>
 </html>
