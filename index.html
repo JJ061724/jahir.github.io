@@ -9,7 +9,19 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(#6ec6ff, #b3e5fc 60%, #e1f5fe);
+  background: linear-gradient(#4facfe, #a1c4fd 60%, #e0f7fa);
+}
+
+/* Cielo asegurado */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#4facfe, #a1c4fd);
+  z-index: -1;
 }
 
 /* Nubes */
@@ -20,7 +32,7 @@ body {
   background: white;
   border-radius: 50px;
   opacity: 0.9;
-  animation: moveClouds 40s linear infinite;
+  animation: moveClouds 30s linear infinite;
 }
 @keyframes moveClouds {
   from { transform: translateX(-200px); }
@@ -48,16 +60,17 @@ body {
 }
 @keyframes fall { to { top: 60%; } }
 
-/* Girasoles bien hechos */
+/* Girasoles corregidos */
 .sunflower {
   position: absolute;
   bottom: 40%;
   transform: translateX(-50%);
   opacity: 0;
-  animation: grow 2s forwards;
+  animation: growUp 2s forwards;
 }
-@keyframes grow {
-  from { transform: translate(-50%, 50%) scale(0); opacity: 0; }
+
+@keyframes growUp {
+  from { transform: translate(-50%, 100%) scale(0); opacity: 0; }
   to { transform: translate(-50%, 0) scale(1); opacity: 1; }
 }
 
@@ -97,16 +110,16 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* Animación suave */
+/* Movimiento natural */
 .sunflower {
-  animation: grow 2s forwards, sway 3s infinite alternate ease-in-out;
+  animation: growUp 2s forwards, sway 3s infinite alternate ease-in-out;
 }
 @keyframes sway {
   from { transform: translate(-50%,0) rotate(-2deg); }
   to { transform: translate(-50%,0) rotate(2deg); }
 }
 
-/* Mensaje con fondo para que se vea */
+/* Mensaje */
 .message {
   position: absolute;
   top: 10%;
@@ -119,7 +132,7 @@ body {
 
 .message-box {
   display: inline-block;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   padding: 20px;
   border-radius: 15px;
   color: white;
@@ -127,7 +140,6 @@ body {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* Botón música */
 button {
   position: absolute;
   top: 10px;
@@ -143,18 +155,20 @@ button {
 </head>
 <body>
 
+<!-- Música más romántica -->
 <button onclick="playMusic()">💛 Música</button>
 <audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Nubes -->
 <div class="cloud" style="top:50px;"></div>
-<div class="cloud" style="top:120px; animation-duration:50s;"></div>
+<div class="cloud" style="top:120px; animation-duration:40s;"></div>
 
 <div id="garden"></div>
 <div class="seed"></div>
 
-<!-- Girasoles -->
+<!-- Girasoles bien orientados -->
 <div class="sunflower" style="left:40%; animation-delay:2s;">
   <div class="stem"></div>
   <div class="flower">
@@ -170,7 +184,7 @@ button {
   </div>
 </div>
 
-<div class="sunflower" style="left:55%; animation-delay:3s;">
+<div class="sunflower" style="left:60%; animation-delay:3s;">
   <div class="stem"></div>
   <div class="flower">
     <div class="petal" style="transform:rotate(0deg);"></div>
