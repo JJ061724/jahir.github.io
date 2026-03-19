@@ -12,7 +12,6 @@ body {
   background: linear-gradient(to top, #87ceeb 0%, #b3e5fc 100%);
 }
 
-/* CIELO visible */
 .sky {
   position: absolute;
   top: 0;
@@ -21,7 +20,6 @@ body {
   background: linear-gradient(#4facfe, #a1c4fd);
 }
 
-/* jardín */
 #garden {
   position: absolute;
   bottom: 0;
@@ -30,7 +28,6 @@ body {
   background: linear-gradient(#4CAF50, #1b5e20);
 }
 
-/* nubes */
 .cloud {
   position: absolute;
   width: 120px;
@@ -45,7 +42,6 @@ body {
   to { transform: translateX(120vw); }
 }
 
-/* semilla */
 .seed {
   width: 12px;
   height: 12px;
@@ -59,7 +55,6 @@ body {
 }
 @keyframes fall { to { top: 60%; } }
 
-/* girasoles */
 .sunflower {
   position: absolute;
   bottom: 40%;
@@ -81,31 +76,31 @@ body {
 }
 
 .flower {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   margin: 0 auto;
   position: relative;
 }
 
 .petal {
-  width: 20px;
-  height: 40px;
+  width: 18px;
+  height: 36px;
   background: yellow;
   position: absolute;
   top: 0;
-  left: 25px;
+  left: 21px;
   border-radius: 50%;
-  transform-origin: center 40px;
+  transform-origin: center 36px;
 }
 
 .center {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background: #5d4037;
   border-radius: 50%;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 17px;
+  left: 17px;
 }
 
 .sunflower {
@@ -116,7 +111,15 @@ body {
   to { transform: translate(-50%,0) rotate(2deg); }
 }
 
-/* mensaje en el jardín */
+/* ❤️ Animación corazón */
+.heart {
+  animation: moveToHeart 2s forwards;
+}
+
+@keyframes moveToHeart {
+  to { transform: translate(var(--x), var(--y)) scale(1.2); }
+}
+
 .message {
   position: absolute;
   bottom: 10%;
@@ -160,46 +163,59 @@ button {
 <div id="garden"></div>
 <div class="seed"></div>
 
-<div class="sunflower" style="left:40%; animation-delay:2s;">
-  <div class="flower">
-    <div class="petal" style="transform:rotate(0deg);"></div>
-    <div class="petal" style="transform:rotate(45deg);"></div>
-    <div class="petal" style="transform:rotate(90deg);"></div>
-    <div class="petal" style="transform:rotate(135deg);"></div>
-    <div class="petal" style="transform:rotate(180deg);"></div>
-    <div class="petal" style="transform:rotate(225deg);"></div>
-    <div class="petal" style="transform:rotate(270deg);"></div>
-    <div class="petal" style="transform:rotate(315deg);"></div>
-    <div class="center"></div>
-  </div>
-  <div class="stem"></div>
-</div>
-
-<div class="sunflower" style="left:60%; animation-delay:3s;">
-  <div class="flower">
-    <div class="petal" style="transform:rotate(0deg);"></div>
-    <div class="petal" style="transform:rotate(45deg);"></div>
-    <div class="petal" style="transform:rotate(90deg);"></div>
-    <div class="petal" style="transform:rotate(135deg);"></div>
-    <div class="petal" style="transform:rotate(180deg);"></div>
-    <div class="petal" style="transform:rotate(225deg);"></div>
-    <div class="petal" style="transform:rotate(270deg);"></div>
-    <div class="petal" style="transform:rotate(315deg);"></div>
-    <div class="center"></div>
-  </div>
-  <div class="stem"></div>
-</div>
-
-<div class="message">
-  <h2>Te doy esta flor amarilla digital para la mejor novia del mundo ❤️</h2>
-  <p>Te amo mucho</p>
-</div>
+<!-- 🌻 Girasoles -->
+<div class="sunflower" id="f1" style="left:30%; animation-delay:2s;"></div>
+<div class="sunflower" id="f2" style="left:40%; animation-delay:2.5s;"></div>
+<div class="sunflower" id="f3" style="left:50%; animation-delay:3s;"></div>
+<div class="sunflower" id="f4" style="left:60%; animation-delay:3.5s;"></div>
+<div class="sunflower" id="f5" style="left:70%; animation-delay:4s;"></div>
 
 <script>
+const flowers = document.querySelectorAll('.sunflower');
+
+flowers.forEach(f => {
+  f.innerHTML = `
+    <div class="flower">
+      <div class="petal" style="transform:rotate(0deg);"></div>
+      <div class="petal" style="transform:rotate(45deg);"></div>
+      <div class="petal" style="transform:rotate(90deg);"></div>
+      <div class="petal" style="transform:rotate(135deg);"></div>
+      <div class="petal" style="transform:rotate(180deg);"></div>
+      <div class="petal" style="transform:rotate(225deg);"></div>
+      <div class="petal" style="transform:rotate(270deg);"></div>
+      <div class="petal" style="transform:rotate(315deg);"></div>
+      <div class="center"></div>
+    </div>
+    <div class="stem"></div>
+  `;
+});
+
+// ❤️ mover a forma de corazón
+setTimeout(() => {
+  const positions = [
+    {x:"-120px", y:"-120px"},
+    {x:"-60px", y:"-180px"},
+    {x:"0px", y:"-200px"},
+    {x:"60px", y:"-180px"},
+    {x:"120px", y:"-120px"}
+  ];
+
+  flowers.forEach((f, i) => {
+    f.style.setProperty('--x', positions[i].x);
+    f.style.setProperty('--y', positions[i].y);
+    f.classList.add('heart');
+  });
+}, 7000);
+
 function playMusic(){
   document.getElementById('music').play();
 }
 </script>
+
+<div class="message">
+  <h2>Para la mejor novia del mundo ❤️</h2>
+  <p>Te amo mucho</p>
+</div>
 
 </body>
 </html>
