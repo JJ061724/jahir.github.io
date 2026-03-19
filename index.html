@@ -5,136 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para ti 💛</title>
 <style>
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-}
+body { margin:0; overflow:hidden; font-family:'Segoe UI'; }
 
-.sky {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 60%;
-  background: linear-gradient(#4facfe, #a1c4fd);
-}
+.sky { position:absolute; top:0; width:100%; height:60%; background:linear-gradient(#4facfe,#a1c4fd); }
+#garden { position:absolute; bottom:0; width:100%; height:40%; background:linear-gradient(#4CAF50,#1b5e20); }
 
-#garden {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(#4CAF50, #1b5e20);
-}
+.cloud { position:absolute; width:120px; height:60px; background:white; border-radius:50px; opacity:0.9; animation:moveClouds 30s linear infinite; }
+@keyframes moveClouds { from{transform:translateX(-200px);} to{transform:translateX(120vw);} }
 
-.cloud {
-  position: absolute;
-  width: 120px;
-  height: 60px;
-  background: white;
-  border-radius: 50px;
-  opacity: 0.9;
-  animation: moveClouds 30s linear infinite;
-}
-@keyframes moveClouds {
-  from { transform: translateX(-200px); }
-  to { transform: translateX(120vw); }
-}
+.seed { width:12px; height:12px; background:brown; border-radius:50%; position:absolute; top:-20px; left:50%; transform:translateX(-50%); animation:fall 2s forwards; }
+@keyframes fall { to{ top:60%; } }
 
-.seed {
-  width: 12px;
-  height: 12px;
-  background: brown;
-  border-radius: 50%;
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: fall 2s forwards;
-}
-@keyframes fall { to { top: 60%; } }
+.sunflower { position:absolute; bottom:40%; transform:translateX(-50%); opacity:0; animation:growUp 2s forwards; }
+@keyframes growUp { from{transform:translate(-50%,50%) scale(0); opacity:0;} to{transform:translate(-50%,0) scale(1); opacity:1;} }
 
-.sunflower {
-  position: absolute;
-  bottom: 40%;
-  transform: translateX(-50%);
-  opacity: 0;
-  animation: growUp 2s forwards;
-}
+.stem { width:6px; height:100px; background:green; margin:0 auto; }
+.flower { width:60px; height:60px; margin:0 auto; position:relative; }
 
-@keyframes growUp {
-  from { transform: translate(-50%, 50%) scale(0); opacity: 0; }
-  to { transform: translate(-50%, 0) scale(1); opacity: 1; }
-}
+.petal { width:18px; height:36px; background:yellow; position:absolute; top:0; left:21px; border-radius:50%; transform-origin:center 36px; }
+.center { width:26px; height:26px; background:#5d4037; border-radius:50%; position:absolute; top:17px; left:17px; }
 
-.stem {
-  width: 6px;
-  height: 100px;
-  background: green;
-  margin: 0 auto;
-}
+.sunflower { animation:growUp 2s forwards, sway 3s infinite alternate ease-in-out; }
+@keyframes sway { from{transform:translate(-50%,0) rotate(-2deg);} to{transform:translate(-50%,0) rotate(2deg);} }
 
-.flower {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto;
-  position: relative;
-}
+/* ❤️ corazón más claro */
+.heartMove { transition: all 2s ease; }
 
-.petal {
-  width: 18px;
-  height: 36px;
-  background: yellow;
-  position: absolute;
-  top: 0;
-  left: 21px;
-  border-radius: 50%;
-  transform-origin: center 36px;
-}
+.message { position:absolute; bottom:10%; width:100%; text-align:center; color:white; font-size:22px; text-shadow:2px 2px 5px rgba(0,0,0,0.6); opacity:0; animation:fadeIn 3s forwards; animation-delay:5s; }
+@keyframes fadeIn { to{opacity:1;} }
 
-.center {
-  width: 26px;
-  height: 26px;
-  background: #5d4037;
-  border-radius: 50%;
-  position: absolute;
-  top: 17px;
-  left: 17px;
-}
-
-.sunflower {
-  animation: growUp 2s forwards, sway 3s infinite alternate ease-in-out;
-}
-@keyframes sway {
-  from { transform: translate(-50%,0) rotate(-2deg); }
-  to { transform: translate(-50%,0) rotate(2deg); }
-}
-
-.message {
-  position: absolute;
-  bottom: 10%;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 22px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-  opacity: 0;
-  animation: fadeIn 3s forwards;
-  animation-delay: 5s;
-}
-
-@keyframes fadeIn { to { opacity: 1; } }
-
-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #ffeb3b;
-  cursor: pointer;
-}
+button { position:absolute; top:10px; right:10px; padding:10px; border:none; border-radius:10px; background:#ffeb3b; cursor:pointer; }
 
 </style>
 </head>
@@ -153,12 +53,14 @@ button {
 <div id="garden"></div>
 <div class="seed"></div>
 
-<!-- Girasoles -->
-<div class="sunflower" id="f1" style="left:30%; animation-delay:2s;"></div>
-<div class="sunflower" id="f2" style="left:40%; animation-delay:2.5s;"></div>
-<div class="sunflower" id="f3" style="left:50%; animation-delay:3s;"></div>
-<div class="sunflower" id="f4" style="left:60%; animation-delay:3.5s;"></div>
-<div class="sunflower" id="f5" style="left:70%; animation-delay:4s;"></div>
+<!-- MÁS flores para mejor corazón -->
+<div class="sunflower" style="left:25%; animation-delay:2s;"></div>
+<div class="sunflower" style="left:35%; animation-delay:2.3s;"></div>
+<div class="sunflower" style="left:45%; animation-delay:2.6s;"></div>
+<div class="sunflower" style="left:55%; animation-delay:2.9s;"></div>
+<div class="sunflower" style="left:65%; animation-delay:3.2s;"></div>
+<div class="sunflower" style="left:75%; animation-delay:3.5s;"></div>
+<div class="sunflower" style="left:50%; animation-delay:3.8s;"></div>
 
 <div class="message">
   <h2>Para la mejor novia del mundo ❤️</h2>
@@ -185,27 +87,27 @@ flowers.forEach(f => {
   `;
 });
 
-// ❤️ formar corazón
+// ❤️ corazón MÁS definido
 setTimeout(() => {
   const positions = [
-    {left:"45%", bottom:"65%"},
     {left:"40%", bottom:"75%"},
-    {left:"50%", bottom:"80%"},
+    {left:"35%", bottom:"65%"},
+    {left:"45%", bottom:"85%"},
+    {left:"55%", bottom:"85%"},
+    {left:"65%", bottom:"65%"},
     {left:"60%", bottom:"75%"},
-    {left:"55%", bottom:"65%"}
+    {left:"50%", bottom:"55%"}
   ];
 
-  flowers.forEach((f, i) => {
-    f.style.transition = "all 2s ease";
+  flowers.forEach((f,i)=>{
+    f.classList.add('heartMove');
     f.style.left = positions[i].left;
     f.style.bottom = positions[i].bottom;
   });
 
-}, 7000);
+},7000);
 
-function playMusic(){
-  document.getElementById('music').play();
-}
+function playMusic(){ document.getElementById('music').play(); }
 </script>
 
 </body>
